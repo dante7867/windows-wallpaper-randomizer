@@ -1,0 +1,1 @@
+from .win_wallpaper_randomizer import set_random_wallpaper
