@@ -15,13 +15,23 @@ def get_current_resolution():
     return GetSystemMetrics(0), GetSystemMetrics(1)
 
 
-def create_and_save_wallpaper():
+def get_random_color_tuple():
+    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+
+def create_and_save_wallpaper(backgroud_color_tuple = None, text_color_tuple = None):
+    if not backgroud_color_tuple:
+        backgroud_color_tuple = get_random_color_tuple()
+
+    if not text_color_tuple:
+        text_color_tuple = get_random_color_tuple()
+
     height, width = get_current_resolution()
 
     img = Image.new(
         'RGB',
         (height, width),
-        color=(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        color=backgroud_color_tuple
     )
 
     d = ImageDraw.Draw(img)
@@ -31,14 +41,14 @@ def create_and_save_wallpaper():
         (0.7 * height, 0.8 * width),
         socket.gethostbyname(socket.gethostname()),
         font=fnt,
-        fill=(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        fill=text_color_tuple
     )
 
     d.text(
         (0.1 * height, 0.1 * width),
         socket.gethostbyname(socket.gethostname()),
         font=fnt,
-        fill=(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        fill=text_color_tuple#79cbb8, #500472
     )
 
     wallpaper_path = os.path.dirname(os.path.abspath(__file__)) + "/art/random_wallpaper.png"
