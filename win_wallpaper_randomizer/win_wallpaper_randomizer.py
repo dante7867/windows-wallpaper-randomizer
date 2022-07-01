@@ -3,6 +3,7 @@ import ctypes
 import os
 import random
 import socket
+import json
 
 from PIL import Image, ImageDraw, ImageFont
 from win32api import GetSystemMetrics
@@ -11,21 +12,30 @@ from .my_decorators import catch_all_and_print
 from .windows_utils import set_reg_sz, set_reg_dword
 
 
+def convert_rgb_to_tuple(hex_rgb):
+    if hex_rgb[0] != "#":
+        raise ValueError
+    else:
+        hex_rgb = hex_rgb[1:]
+        return tuple(int(hex_rgb[i:i + 2], 16) for i in (0, 2, 4))
+
+
 def get_current_resolution():
     return GetSystemMetrics(0), GetSystemMetrics(1)
 
 
 def get_random_color_tuple():
-    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
 
-def create_and_save_wallpaper(backgroud_color_tuple = None, text_color_tuple = None):
+def create_and_save_wallpaper(backgroud_color_tuple=None, text_color_tuple=None):
     if not backgroud_color_tuple:
         backgroud_color_tuple = get_random_color_tuple()
 
     if not text_color_tuple:
         text_color_tuple = get_random_color_tuple()
 
+    print('background:', backgroud_color_tuple, 'text', text_color_tuple)
     height, width = get_current_resolution()
 
     img = Image.new(
@@ -48,7 +58,7 @@ def create_and_save_wallpaper(backgroud_color_tuple = None, text_color_tuple = N
         (0.1 * height, 0.1 * width),
         socket.gethostbyname(socket.gethostname()),
         font=fnt,
-        fill=text_color_tuple#79cbb8, #500472
+        fill=text_color_tuple
     )
 
     wallpaper_path = os.path.dirname(os.path.abspath(__file__)) + "/art/random_wallpaper.png"
@@ -82,3 +92,21 @@ def set_random_wallpaper():
     set_wallpaper(wallpaper_path)
     strech_wallpaper()
 
+
+@catch_all_and_print
+def set_wallpaper_from_predefined():
+    set_background_type_to_picture()
+
+    predefined_path = os.path.dirname(os.path.abspath(__file__)) + "/art/predefined_color_sets.json"
+    with open(predefined_path, 'r') as f:
+        pred_color_sets_list = json.loads(f.read())
+
+    random_wallpaper_idx = random.randint(0, len(pred_color_sets_list) - 1)
+    random_wallpaper_dict = pred_color_sets_list[random_wallpaper_idx]
+
+    print(f"Setting {random_wallpaper_dict['name']} as wallpaper")
+
+    wallpaper_path = create_and_save_wallpaper(convert_rgb_to_tuple(random_wallpaper_dict['background']),
+                                               convert_rgb_to_tuple(random_wallpaper_dict['text']))
+    set_wallpaper(wallpaper_path)
+    strech_wallpaper()
