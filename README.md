@@ -6,14 +6,26 @@ This script was made to make it easier to distinguish different sessions when wo
 ## Example
 <img src="https://user-images.githubusercontent.com/31797203/176911664-9faf9827-a80d-4013-b56c-50f5f1dc753b.png" width="512" height="288" />
 
-# Command line arguments
-
-## [-r, --random] 
 ### How is wallpaper generated?
 - ip address is read automatically
 - resolution of the wallpaper is read from currently used 
-- background and ip adresses colors are random
 - proportions are hardcoded
+- colors are picked depanding on passed arguments
+# Usage
+
+randomize_wallpaper.py [-h] [-r | -p | -s SELECTED]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r, --random          set wallpaper with randomly generated colors
+  -p, --random-predefined
+                        set one of wallpapers from predefined in ./win_wallpaper_randomizer/art/predefined_color_sets.json
+  -s SELECTED, --selected SELECTED
+                        name of selected color scheme predefined in ./win_wallpaper_randomizer/art/predefined_color_sets.json
+# Command line arguments
+
+## [-r, --random] / nothing passed 
+Background and ip adresses colors are totaly random
 
 ## [-p, --random-predefined] 
 Picks a random background and text set from a file in `./win_wallpaper_randomizer/art/predefined_color_sets.json`.

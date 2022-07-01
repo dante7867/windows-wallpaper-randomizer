@@ -13,6 +13,7 @@ from .windows_utils import set_reg_sz, set_reg_dword
 
 
 def convert_rgb_to_tuple(hex_rgb):
+    """Converts RGB color to tuple. Example: input = #0099FF, output tuple=(0x00, 0x99,0xFF)"""
     if hex_rgb[0] != "#":
         raise ValueError
     else:
@@ -21,10 +22,12 @@ def convert_rgb_to_tuple(hex_rgb):
 
 
 def get_current_resolution():
+    """Returns current sessions screen resolution"""
     return GetSystemMetrics(0), GetSystemMetrics(1)
 
 
 def get_random_color_tuple():
+    """Generates a random RGB numer in form of tuple"""
     return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
 
@@ -87,6 +90,7 @@ def strech_wallpaper():
 
 @catch_all_and_print
 def set_random_wallpaper():
+    """Creates and sets wallpaper with random colors"""
     set_background_type_to_picture()
     wallpaper_path = create_and_save_wallpaper()
     set_wallpaper(wallpaper_path)
@@ -95,6 +99,7 @@ def set_random_wallpaper():
 
 @catch_all_and_print
 def set_wallpaper_from_predefined():
+    """Creates and sets wallpaper using random scheme from predefined file"""
     set_background_type_to_picture()
 
     predefined_path = os.path.dirname(os.path.abspath(__file__)) + "/art/predefined_color_sets.json"
@@ -108,5 +113,31 @@ def set_wallpaper_from_predefined():
 
     wallpaper_path = create_and_save_wallpaper(convert_rgb_to_tuple(random_wallpaper_dict['background']),
                                                convert_rgb_to_tuple(random_wallpaper_dict['text']))
+    set_wallpaper(wallpaper_path)
+    strech_wallpaper()
+
+
+@catch_all_and_print
+def set_selected_wallpaper(chosen_colors_scheme):
+    """Create and sets wallpaper from predefined file indicated by name as argument"""
+    if not chosen_colors_scheme:
+        print("No color set was indicated! Did you mean to use [-r] or [-p] flags?")
+        exit()
+
+    set_background_type_to_picture()
+
+    predefined_path = os.path.dirname(os.path.abspath(__file__)) + "/art/predefined_color_sets.json"
+    with open(predefined_path, 'r') as f:
+        pred_color_sets_list = json.loads(f.read())
+
+    selected = next((elem for elem in pred_color_sets_list if elem["name"] == chosen_colors_scheme),
+                    None)
+
+    if selected is None:
+        print(f"Predefined color set with \'{chosen_colors_scheme}\' could not be found!")
+        exit()
+
+    wallpaper_path = create_and_save_wallpaper(convert_rgb_to_tuple(selected['background']),
+                                               convert_rgb_to_tuple(selected['text']))
     set_wallpaper(wallpaper_path)
     strech_wallpaper()
