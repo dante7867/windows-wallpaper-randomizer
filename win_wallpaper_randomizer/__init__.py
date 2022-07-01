@@ -1,1 +1,1 @@
-from .win_wallpaper_randomizer import set_random_wallpaper
+from .win_wallpaper_randomizer import set_random_wallpaper, set_wallpaper_from_predefined, set_selected_wallpaper

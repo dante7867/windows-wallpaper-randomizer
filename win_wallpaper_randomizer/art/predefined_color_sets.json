@@ -1,0 +1,67 @@
+[
+    {
+        "name": "yellow_and_blue",
+        "background": "#f4b41a",
+        "text": "#143d59"
+    },
+    {
+        "name": "navy_and_teal",
+        "background": "#21007",
+        "text": "#213970"
+    },
+    {
+        "name": "black_and_orange",
+        "background": "#ffe042",
+        "text": "#e71989"
+    },
+    {
+        "name": "maroon_and_peach",
+        "background": "#ffa781",
+        "text": "#5b0e2d"
+    },
+    {
+        "name": "deep_purple_and_blue",
+        "background": "#00e1d9",
+        "text": "#5e001f"
+    },
+    {
+        "name": "blue_and_gray",
+        "background": "#0e387a",
+        "text": "#9fafca"
+    },
+    {
+        "name": "blue_and_yellow",
+        "background": "#fcc729",
+        "text": "#337def"
+    },
+    {
+        "name": "olive_and_white",
+        "background": "#a3842c",
+        "text": "#ffffff"
+    },
+    {
+        "name": "forest_green_and_dark_sea_green",
+        "background": "#0f4d19",
+        "text": "#6fc27c"
+    },
+    {
+        "name": "orange_and_blue",
+        "background": "e54b22",
+        "text": "#abd1ff"
+    },
+    {
+        "name": "blue_and_peach",
+        "background": "#0f149a",
+        "text": "#fd9b4d"
+    },
+    {
+        "name": "dark_brown_and_marigold",
+        "background": "#372800",
+        "text": "#f6b60d"
+    },
+    {
+        "name": "pink_and_maroon",
+        "background": "#f9858b",
+        "text": "#761137"
+    }
+]
