@@ -14,5 +14,5 @@ if __name__ == "__main__":
         # example: yellow_and_green: background: ![#f4b41a](https://via.placeholder.com/15/f4b41a/f4b41a.png)
         # `#f4b41a` text: ![#c5f015](https://via.placeholder.com/15/c5f015/c5f015.png) `#c5f015`
         print(f"| {color_set['name']} | ![#{color_set['background']}](https://via.placeholder.com/15/"
-              "{color_set['background']}/{color_set['background']}.png)"
-              "| ![#{color_set['text']}](https://via.placeholder.com/15/{color_set['text']}/{color_set['text']}.png) |")
+              f"{color_set['background']}/{color_set['background']}.png)"
+              f"| ![#{color_set['text']}](https://via.placeholder.com/15/{color_set['text']}/{color_set['text']}.png) |")

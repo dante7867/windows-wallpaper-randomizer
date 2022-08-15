@@ -6,23 +6,23 @@
     },
     {
         "name": "navy_and_teal",
-        "background": "#21007",
-        "text": "#213970"
+        "background": "#000080",
+        "text": "#008080"
     },
     {
         "name": "black_and_orange",
-        "background": "#ffe042",
-        "text": "#e71989"
+        "background": "#000000",
+        "text": "#ff8c00"
     },
     {
         "name": "maroon_and_peach",
         "background": "#ffa781",
-        "text": "#5b0e2d"
+        "text": "#761f14"
     },
     {
         "name": "deep_purple_and_blue",
         "background": "#00e1d9",
-        "text": "#5e001f"
+        "text": "#570861"
     },
     {
         "name": "blue_and_gray",
@@ -46,8 +46,8 @@
     },
     {
         "name": "orange_and_blue",
-        "background": "e54b22",
-        "text": "#abd1ff"
+        "background":"#ff8c00",
+        "text": "#6495ed"
     },
     {
         "name": "blue_and_peach",
